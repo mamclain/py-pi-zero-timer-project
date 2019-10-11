@@ -1,0 +1,61 @@
+block layout
+    div.row
+        div.col
+            br
+    script(type="text/javascript" src="{{url_for('static', filename='script/application.js')}}")
+    div(data-bind="visible:ajax_started()")
+        div(data-bind="visible:!ajax_run_event()").row
+            div.col
+                div.row
+                    div.col-12
+                        h2(style="color:#FFFFFF") Enter your Run Time:
+                div.row
+                    div.col-12
+                        input(class="form-control" id="hours" placeholder="Enter Hours", data-bind="textInput:ko_hours")
+                div.row
+                    div.col-12
+                        input(class="form-control" id="minutes" placeholder="Enter Minutes", data-bind="textInput:ko_minutes")
+                div.row
+                    div.col-12
+                        input(class="form-control" id="seconds" placeholder="Enter Seconds", data-bind="textInput:ko_seconds")
+                div.row
+                    div.col-12
+                        br
+                div.row
+                    div.col-12
+                        button(type="button", class="btn btn-primary btn-lg btn-block", data-bind="click:start_event, visible:!ajax_start_event()") Start Timer
+                        div(role="status", data-bind="visible:ajax_start_event()").spinner-border.text-primary
+                            span.sr-only Loading...
+        div(data-bind="visible:ajax_run_event()").row
+            div.col
+                div.row
+                    div.col-12
+                        h2(style="color:#FFFFFF") Timer is Running:
+                div.row
+                    div.col-12
+                        h2
+                            span(style="color:#FFFFFF", data-bind="html:status_hours")
+                            span(style="color:#FFFFFF") :
+                            span(style="color:#FFFFFF", data-bind="html:status_minutes")
+                            span(style="color:#FFFFFF") :
+                            span(style="color:#FFFFFF", data-bind="html:status_seconds")
+                div.row
+                    div.col-12
+                        br
+                div.row
+                    div.col-12
+                        button(type="button", class="btn btn-primary btn-lg btn-block", data-bind="click:stop_event, visible:!ajax_stop_event()") Stop Timer
+                        div(role="status", data-bind="visible:ajax_stop_event()").spinner-border.text-primary
+                            span.sr-only Loading...
+
+    div(class="modal fade", id="errorModal", tabindex="-1", role="dialog", aria-labelledby="exampleModalLabel", aria-hidden="true")
+        div(class="modal-dialog", role="document")
+            div(class="modal-content")
+                div(class="modal-header")
+                    h5(class="modal-title", id="exampleModalLabel", data-bind="html:error_title") Modal title
+                    button(type="button", class="close", data-dismiss="modal", aria-label="Close")
+                    span(aria-hidden="true") &times;
+                div(class="modal-body")
+                    span(data-bind="html:error_body") Hello From Error Modal
+                div(class="modal-footer")
+                    button(type="button", class="btn btn-primary", data-dismiss="modal") Close
