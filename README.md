@@ -24,7 +24,7 @@ the use of a virtual environment (`python -m venv .\venv`) on the pi is optional
 
 `systemd` or `rc.local` should be used where needed to launch the web server if a startup application is desired.
 
-A primate web GUI is provided to control, monitor, and cancel the timer.
+A primitive web GUI is provided to control, monitor, and cancel the timer.
 
 This GUI is currently accessible to anyone with network access to the pi... if added security is needed, it is recommended that additional steps are taken to limit network access.
 
